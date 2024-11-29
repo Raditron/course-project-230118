@@ -6,9 +6,10 @@
 ## **Титулна страница**
 **Курсова задача по дисциплина:** Програмиране с обектно-ориентирани езици  
 **Тема:** Реализация на програма за управление на служители с почасово заплащане  
-**Студент:** [Име на студента, факултетен номер]  
-**Ръководител:** [Име на ръководителя]  
-**Дата:** [Дата]
+**Студент:** Радослав Петров Русев
+**Факултетен Номер:** 361224042  
+**Ръководител:** Елена Калчева
+**Дата:** 29.11.2024
 
 ---
 
@@ -114,4 +115,90 @@ int main()
         cout << "average salary: " << avg / n;
     }
     return 0;
+}
+```
+### Файл `Person.cpp`
+```cpp
+#pragma once
+#include <iostream>
+using namespace std;
+
+class Person {
+private:
+    string Name, Address;
+    string phoneNumber;
+
+public:
+    Person() : phoneNumber(""), Name(""), Address("") {}
+    Person(string number, string name, string address) {
+        this->phoneNumber = number;
+        this->Name = name;
+        this->Address = address;
+    }
+    ~Person();
+
+    string getName() { return Name; }
+    void setName(string name) { this->Name = name; }
+
+    string getNumber() { return phoneNumber; }
+    void setNumber(double number) { this->phoneNumber = number; }
+
+    string getAddress() { return Address; }
+    void setAddress(string address) { this->Address = address; }
+
+    virtual void getInfo() {
+        cout << "Name: " << Name << endl;
+        cout << "Number: " << phoneNumber << endl;
+        cout << "Address: " << Address << endl;
+    }
+};
+
+Person::~Person() {}
+```
+### Файл `HourlyPerson.cpp`
+```cpp
+#include <iostream>
+using namespace std;
+#include "Person.cpp"
+
+class HourlyEmployee : public Person
+{
+private:
+    double monthlyClockedHours;
+    double hourlySalary;
+
+public:
+    HourlyEmployee() : Person(), monthlyClockedHours(0), hourlySalary(0){};
+    HourlyEmployee(string number, string name, string address, double hours, double salary) : Person(number, name, address)
+    {
+        this->hourlySalary = salary;
+        this->monthlyClockedHours = hours;
+    }
+
+    double getSalary() { return hourlySalary; }
+    void setSalary(double salary) { this->hourlySalary = salary; }
+
+    double getHours() { return monthlyClockedHours; }
+    void setHours(double hours) { this->monthlyClockedHours = hours; }
+
+    double monthPayment()
+    {
+        double monthlyPayment = hourlySalary * monthlyClockedHours;
+        return monthlyPayment;
+    }
+
+    void getInfo() override
+    {
+        cout << "Name: " << this->getName() << endl;
+        cout << "Number: " << this->getNumber() << endl;
+        cout << "Address: " << this->getAddress() << endl;
+        cout << "Hours: " << monthlyClockedHours << endl;
+        cout << "Salary: " << hourlySalary << endl;
+    }
+
+    ~HourlyEmployee();
+};
+
+HourlyEmployee::~HourlyEmployee()
+{
 }
