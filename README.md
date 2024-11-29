@@ -202,3 +202,31 @@ public:
 HourlyEmployee::~HourlyEmployee()
 {
 }
+```
+### Входни Данни 
+```
+3
+0888123456 Ivan Sofia 160 10
+0888987654 Maria Plovdiv 120 15
+0888111222 Georgi Varna 140 12
+```
+### Изходни Данни 
+```
+Name: Ivan
+Number: 0888123456
+Address: Sofia
+Hours: 160
+Salary: 10
+Name: Maria
+Number: 0888987654
+Address: Plovdiv
+Hours: 120
+Salary: 15
+Name: Georgi
+Number: 0888111222
+Address: Varna
+Hours: 140
+Salary: 12
+average salary: 12.3333
+
+```
